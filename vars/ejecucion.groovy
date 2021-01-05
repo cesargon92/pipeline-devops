@@ -10,9 +10,10 @@ def call(){
                 steps {
                     script {
                         env.TASK = ''
-                        String inputParam = params.stage
-                        println("Texto ingresado: " + inputParam)
-                        String [] splittedParam = inputParam.split(";")
+                        String inputParam = params.stage;
+                        inputParam.replaceAll(" ", "");
+                        println("Texto ingresado: " + inputParam);
+                        String [] splittedParam = inputParam.split(";");
                         
                         if(params.selector == 'gradle'){
                             gradle.call(splittedParam)
