@@ -13,6 +13,7 @@ def call(){
                         String inputParam = params.stage;
                         inputParam.replaceAll(" ", "");
                         println("Texto ingresado: " + inputParam);
+                        println("Longitud String: " + inputParam.size());
                         String [] splittedParam = inputParam.split(";");
                         
                         if(params.selector == 'gradle'){
