@@ -1,4 +1,4 @@
-def call(String [] arrStages) {
+def call(List<String> arrStages) {
     println("Cantidad de Stages ingresados: " + arrStages.size())
     stage('Compile') {
         env.TASK = env.STAGE_NAME
