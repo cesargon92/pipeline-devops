@@ -1,12 +1,21 @@
 def call(){
     pipeline {
         agent any
-        parameters { choice(name: 'selector', choices: ['gradle', 'maven'], description: 'Seleccione') }
+        parameters { 
+            choice(name: 'selector', choices: ['gradle', 'maven'], description: 'Seleccione')
+            string(name: 'stage', defaultValue: '', description: '')
+        }
         stages {
             stage('Pipeline') {
                 steps {
                     script {
                         env.TASK = ''
+                        String inputParam = params.stage
+                        println("Texto ingresado: " + inputParam)
+                        String [] splittedParam = inputParam.split(";")
+                        for (String str in splittedParam){
+                            println("Parametro detectado: " + str)
+                        }
                         if(params.selector == 'gradle'){
                             gradle.call()
                         } else {
