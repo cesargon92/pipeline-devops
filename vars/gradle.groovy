@@ -1,13 +1,13 @@
-/*
-    forma de invocación de método call:
-    def ejecucion = load 'script.groovy'
-    ejecucion.call()
-*/
-
-def call() {
-    stage('Build & Test') {
+def call(String [] arrStages) {
+    println("Cantidad de Stages ingresados: " + arrStages)
+    stage('Build') {
         env.TASK = env.STAGE_NAME
-        sh './gradlew clean build'
+        sh './gradlew clean build -x test'
+    }
+
+    stage('Test') {
+        env.TASK = env.STAGE_NAME
+        sh './gradlew clean test -x build'
     }
 
     stage('Sonar') {

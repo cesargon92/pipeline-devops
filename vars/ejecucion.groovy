@@ -17,9 +17,9 @@ def call(){
                             println("Parametro detectado: " + str)
                         }
                         if(params.selector == 'gradle'){
-                            gradle.call()
+                            gradle.call(splittedParam)
                         } else {
-                            maven.call()
+                            maven.call(splittedParam)
                         }
                     }
                 }

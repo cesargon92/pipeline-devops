@@ -1,10 +1,5 @@
-/*
-    forma de invocación de método call:
-    def ejecucion = load 'script.groovy'
-    ejecucion.call()
-*/
-
-def call() {
+def call(String [] arrStages) {
+    println("Cantidad de Stages ingresados: " + arrStages)
     stage('Compile') {
         env.TASK = env.STAGE_NAME
         sh 'mvn clean compile -e'
@@ -17,7 +12,7 @@ def call() {
         env.TASK = env.STAGE_NAME
         sh 'mvn clean package -e'
     }
-    stage('SonarQube analysis') {
+    stage('SonarQube') {
         env.TASK = env.STAGE_NAME
         withSonarQubeEnv(installationName: 'sonar-server') {
             sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
