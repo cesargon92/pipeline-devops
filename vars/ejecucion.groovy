@@ -12,7 +12,7 @@ def call(){
                         env.TASK = ''
                         String inputParam = params.stage
                         println("Texto ingresado: " + inputParam)
-                        String [] splittedParam = inputParam.trim().split(";")
+                        String [] splittedParam = inputParam.split(";")
                         
                         if(params.selector == 'gradle'){
                             gradle.call(splittedParam)
