@@ -59,7 +59,7 @@ def call(List<String> arrStages) {
                 sh './gradlew bootRun &'
                 sh 'sleep 20'
             }
-            runOk;
+            runOk = true;
             break;
         }
     }
