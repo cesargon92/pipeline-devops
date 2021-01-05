@@ -14,7 +14,8 @@ def call(){
                         inputParam.replaceAll(" ", "");
                         println("Texto ingresado: " + inputParam);
                         println("Longitud String: " + inputParam.size());
-                        String [] splittedParam = new String[] { }
+                        def splittedParam = new String[] { }
+                        
                         if (inputParam.contains(";")){
                             splittedParam = inputParam.split(";");
                         }
