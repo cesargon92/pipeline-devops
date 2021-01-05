@@ -16,7 +16,7 @@ def call(){
                         println("Longitud String: " + inputParam.size());
                         List<String> splittedParam = new ArrayList<>();
 
-                        if (inputParam.contains(";")){
+                        if (inputParam.size() > 0){
                             splittedParam = inputParam.split(";");
                         }
                         
