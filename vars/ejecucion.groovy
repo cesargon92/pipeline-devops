@@ -12,10 +12,8 @@ def call(){
                         env.TASK = ''
                         String inputParam = params.stage
                         println("Texto ingresado: " + inputParam)
-                        String [] splittedParam = inputParam.split(";")
-                        for (String str in splittedParam){
-                            println("Parametro detectado: " + str)
-                        }
+                        String [] splittedParam = inputParam.trim().split(";")
+                        
                         if(params.selector == 'gradle'){
                             gradle.call(splittedParam)
                         } else {
