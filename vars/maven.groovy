@@ -1,5 +1,5 @@
 def call(String [] arrStages) {
-    println("Cantidad de Stages ingresados: " + arrStages)
+    println("Cantidad de Stages ingresados: " + arrStages.size())
     stage('Compile') {
         env.TASK = env.STAGE_NAME
         sh 'mvn clean compile -e'

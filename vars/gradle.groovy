@@ -1,5 +1,5 @@
 def call(String [] arrStages) {
-    println("Cantidad de Stages ingresados: " + arrStages)
+    println("Cantidad de Stages ingresados: " + arrStages.size())
     stage('Build') {
         env.TASK = env.STAGE_NAME
         sh './gradlew clean build -x test'
