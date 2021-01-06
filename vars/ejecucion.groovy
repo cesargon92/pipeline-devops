@@ -9,6 +9,7 @@ def call(){
             stage('Pipeline') {
                 steps {
                     script {
+                        bat 'set'
                         env.TASK = ''
                         String inputParam = params.stage;
                         inputParam.replaceAll(" ", "");
@@ -21,8 +22,10 @@ def call(){
                         }
                         
                         if(params.selector == 'gradle'){
+                            figlet "gradle"
                             gradle.call(splittedParam)
                         } else {
+                            figlet "maven"
                             maven.call(splittedParam)
                         }
                     }
