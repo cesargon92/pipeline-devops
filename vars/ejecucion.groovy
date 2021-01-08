@@ -1,32 +1,26 @@
 def call(){
     pipeline {
         agent any
-        parameters { 
+        /*parameters { 
             choice(name: 'selector', choices: ['gradle', 'maven'], description: 'Seleccione')
             string(name: 'stage', defaultValue: '', description: '')
-        }
+        }*/
         stages {
             stage('Pipeline') {
                 steps {
                     script {
                         bat 'set'
                         env.TASK = ''
-                        String inputParam = params.stage;
-                        inputParam.replaceAll(" ", "");
-                        println("Texto ingresado: " + inputParam);
-                        println("Longitud String: " + inputParam.size());
-                        List<String> splittedParam = new ArrayList<>();
-
-                        if (inputParam.size() > 0){
-                            splittedParam = inputParam.split(";");
-                        }
-                        
-                        if(params.selector == 'gradle'){
-                            figlet "gradle"
-                            gradle.call(splittedParam)
+                        println("Ejecutando pipeline de la rama: " + env.GIT_BRANCH);
+                                            
+                        if(env.GIT_BRANCH.contains('feature') || env.GIT_BRANCH.contains('develop')){
+                            figlet "Pipeline CI"
+                            pipeline-ci.call()
+                        } else if (env.GIT_BRANCH.contains('release')){
+                            figlet "Pipeline CD"
+                            pipeline-cd.call()
                         } else {
-                            figlet "maven"
-                            maven.call(splittedParam)
+                            println("Rama sin pipeline asociado: " + env.GIT_BRANCH);
                         }
                     }
                 }
