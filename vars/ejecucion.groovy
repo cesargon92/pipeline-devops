@@ -15,10 +15,10 @@ def call(){
                                             
                         if(env.GIT_BRANCH.contains('feature') || env.GIT_BRANCH.contains('develop')){
                             figlet "Pipeline CI"
-                            pipeline-ci.call()
+                            pipelineCI.call()
                         } else if (env.GIT_BRANCH.contains('release')){
                             figlet "Pipeline CD"
-                            pipeline-cd.call()
+                            pipelineCD.call()
                         } else {
                             println("Rama sin pipeline asociado: " + env.GIT_BRANCH);
                         }
