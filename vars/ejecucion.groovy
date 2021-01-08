@@ -12,7 +12,7 @@ def call(){
                         bat 'set'
                         env.TASK = ''
                         println("Ejecutando pipeline de la rama: " + env.GIT_BRANCH);
-                                            
+                        figlet "gradle"                    
                         if(env.GIT_BRANCH.contains('feature') || env.GIT_BRANCH.contains('develop')){
                             figlet "Pipeline CI"
                             pipelineCI.call()
@@ -29,10 +29,10 @@ def call(){
 
         post{
             success {
-                slackSend color: 'good', message: "[Cesar Gonzalez][${env.JOB_NAME}][${params.selector}] Ejecucion exitosa", tokenCredentialId: 'slack-token'
+                slackSend color: 'good', message: "[Cesar Gonzalez][${env.JOB_NAME}][gradle] Ejecucion exitosa", tokenCredentialId: 'slack-token'
             }
             failure {
-                slackSend color: 'danger', message: "[Cesar Gonzalez][${env.JOB_NAME}][${params.selector}] Ejecucion fallida en stage [${env.TASK}]", tokenCredentialId: 'slack-token'
+                slackSend color: 'danger', message: "[Cesar Gonzalez][${env.JOB_NAME}][gradle] Ejecucion fallida en stage [${env.TASK}]", tokenCredentialId: 'slack-token'
             }
         }
     }
